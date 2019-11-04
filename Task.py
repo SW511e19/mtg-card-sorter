@@ -6,6 +6,7 @@ def get_time_ms():
     return int(datetime.datetime.timestamp(datetime.datetime.now()) * 1000)
 
 
+# super class for all task classes
 class Task(threading.Thread):
     start_time = 0
 
@@ -18,16 +19,17 @@ class Task(threading.Thread):
         self.start_time = get_time_ms
         threading.Thread.start(self)
 
+    # temp method for testing deadline time
     def method_time_test(self):
         print("time in ms: ", get_time_ms())
         while True:
             if get_time_ms() >= self.start_time + self.deadline:
                 print("deadline over")
-                break;
+                break
             else:
                 time = get_time_ms()
                 print("updated time")
 
+
 def make_task(deadline, priority):
-    task = Task(deadline, priority)
-    return task
+    return Task(deadline, priority)
