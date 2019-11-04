@@ -9,6 +9,7 @@ def get_time_ms():
 # super class for all task classes
 class Task(threading.Thread):
     start_time = 0
+    is_running = False
 
     def __init__(self, deadline, priority):
         threading.Thread.__init__(self)
@@ -17,7 +18,13 @@ class Task(threading.Thread):
 
     def start_task(self):
         self.start_time = get_time_ms
+        self.is_running = True
         threading.Thread.start(self)
+
+    # TODO add error case
+    def update_running_state(self, boolean):
+        if boolean is bool:
+            self.is_running = boolean
 
     # temp method for testing deadline time
     def method_time_test(self):
