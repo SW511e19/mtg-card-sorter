@@ -7,7 +7,11 @@ def get_time_ms():
 
 
 class InterruptTable:
-    lst = []
+    task_lst = []
+    task = Task.make_task(5000, 42)
 
-    tuple = (Task, 5000, 42, get_time_ms())
-    lst.append(tuple)
+    tuple = (task, task.deadline, task.priority)
+    task_lst.append(tuple)
+
+    def add_task(self, task):
+        self.task_lst.append(task)

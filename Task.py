@@ -1,37 +1,33 @@
 import datetime
+import threading
 
 
 def get_time_ms():
     return int(datetime.datetime.timestamp(datetime.datetime.now()) * 1000)
 
 
-class Task:
-    start = get_time_ms()
-    deadline = 0
-    priority = 0
+class Task(threading.Thread):
+    start_time = 0
 
-    def __init__(self, start, deadline, priority):
-        self.start = start
+    def __init__(self, deadline, priority):
+        threading.Thread.__init__(self)
         self.deadline = deadline
         self.priority = priority
 
-    def get_start(self):
-        return self.start
+    def start_task(self):
+        self.start_time = get_time_ms
+        threading.Thread.start(self)
 
-    def get_deadline(self):
-        return self.deadline
+    def method_time_test(self):
+        print("time in ms: ", get_time_ms())
+        while True:
+            if get_time_ms() >= self.start_time + self.deadline:
+                print("deadline over")
+                break;
+            else:
+                time = get_time_ms()
+                print("updated time")
 
-    def get_priority(self):
-        return self.priority
-
-
-
-    print("time in ms: ", get_time_ms())
-
-    while True:
-        if get_time_ms() >= start + deadline:
-            print("deadline over")
-            break;
-        else:
-            time = get_time_ms()
-            print("updated time")
+def make_task(deadline, priority):
+    task = Task(deadline, priority)
+    return task
