@@ -1,6 +1,6 @@
 import threading
 import datetime
-import Task
+import task
 
 
 def get_time_ms():
@@ -8,7 +8,7 @@ def get_time_ms():
 
 
 # Used to control the piston for pushing cards
-class PistonTask(Task.Task):
+class PistonTask(task.Task):
 
     def __init__(self, deadline, priority):
         super().__init__(deadline, priority)

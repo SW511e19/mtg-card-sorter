@@ -1,5 +1,5 @@
 import datetime
-import Task
+import task
 
 
 def get_time_ms():
@@ -8,7 +8,7 @@ def get_time_ms():
 
 class InterruptTable:
     task_lst = []
-    task = Task.make_task(5000, 42)
+    task = task.make_task(5000, 42)
 
     tuple = (task, task.deadline, task.priority)
     task_lst.append(tuple)
